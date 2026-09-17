@@ -16,9 +16,9 @@ projects:
     logo: "assets/projects/type-me.svg"
     logo-alt: "TYPE-ME logo: a magnifying glass containing smaller magnifying glasses"
     description: >-
-      Methods research takes many forms that go by many different names.
-      TYPE-ME sorts these studies into clear types, so researchers can plan,
-      report and find this work more easily.
+      Methods research goes by dozens of different names, which makes it hard
+      to describe and hard to find. TYPE-ME sorts it into clear types, so you
+      can say what you did and find what others have done.
     website: "https://methods-research.org"
     outputs: "https://osf.io/preprints/metaarxiv/nyj2p_v1"
 
@@ -29,9 +29,9 @@ projects:
     logo: ""
     logo-alt: ""
     description: >-
-      People who write guidance on research methods have little guidance of
-      their own. STREAM examines how such guidance is produced today and
-      develops practical standards for producing it well.
+      People who write methods guidance get almost no guidance themselves.
+      STREAM looks at how they work now, and builds standards for doing it
+      well.
     # TODO: the STREAM site is a placeholder until DNS for stream.methods-research.org
     # is live. Blank this field to hide the button in the meantime.
     website: "https://stream.methods-research.org"
@@ -44,8 +44,8 @@ projects:
     logo: "assets/projects/lights.png"
     logo-alt: "LIGHTS logo"
     description: >-
-      Advice on research methods is scattered across thousands of papers.
-      LIGHTS collects it in one searchable library that is kept up to date.
+      Advice on research methods sits scattered across thousands of papers.
+      LIGHTS gathers it into one library you can actually search.
     website: "https://lights.science"
     outputs: "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2801408"
 
@@ -56,9 +56,9 @@ projects:
     logo: "assets/projects/iceman.svg"
     logo-alt: "ICEMAN logo"
     description: >-
-      Trials and reviews often report that a treatment worked better in one
-      group of patients than another. ICEMAN gives researchers a structured
-      way to judge whether such a claim is credible.
+      Trials and reviews often claim a treatment worked better in one group of
+      patients than another. ICEMAN helps you work out whether to believe
+      it.
     website: "https://www.iceman.help"
     outputs: "https://www.iceman.help/about.html#publications-and-endorsements"
 
@@ -67,33 +67,31 @@ projects:
     order: 1
     status: planning
     description: >-
-      Methods studies are rarely registered before they begin, so it is hard
-      to see what is underway or whether plans changed along the way. We are
-      exploring what such a registry would need in order to be useful.
+      Almost nobody registers a methods study before starting it, so we cannot
+      tell what is already underway or whether the plan changed on the way.
+      We are asking what a registry would need to be worth using.
 
   - id: review-guidance
     name: "Guidance for reviews of applied methods and meta-epidemiology"
     order: 2
     status: planning
     description: >-
-      Two common types of methods research still have no agreed standards for
-      how to conduct or report them. We are considering how such guidance
-      could be developed.
+      Two of the commonest kinds of methods research still have no agreed way
+      to run or report them. We are working out how to fix that.
 
   - id: methodological-evidence
     name: "What counts as methodological evidence"
     order: 3
     status: planning
     description: >-
-      What counts as evidence that one method works better than another? We
-      want to describe the kinds of evidence methods researchers rely on, and
-      how much weight each kind can carry.
+      How do you show that one method beats another? We want to map the kinds
+      of evidence people lean on, and say how much weight each one can bear.
 
   - id: ai-decisions
     name: "AI-mediated methodological decisions"
     order: 4
     status: planning
     description: >-
-      Researchers increasingly ask AI tools how to design and analyse their
-      studies. We are considering how to study what these tools recommend and
-      what that means for methods guidance.
+      More and more researchers ask an AI what design or analysis to use. We
+      want to find out what these tools actually recommend, and what that
+      means for the guidance we write.

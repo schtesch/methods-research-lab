@@ -10,22 +10,22 @@ related:
     order: 1
     url: "https://www.gradeworkinggroup.org"
     description: >-
-      Develops the GRADE approach to rating certainty of evidence. Members of
-      the Lab contribute to some of its methods guidance.
+      Sets the GRADE approach for rating how certain the evidence is. Some of
+      us help write its guidance.
 
   - name: "EQUATOR Network"
     order: 2
     url: "https://www.equator-network.org"
     description: >-
-      Maintains a library of reporting guidelines for health research. An
-      external resource we use and study.
+      Keeps the library of reporting guidelines for health research. We use it,
+      and we study it.
 
   - name: "COMET Initiative"
     order: 3
     url: "https://www.comet-initiative.org"
     description: >-
-      Collects core outcome sets for trials and reviews. An external resource
-      relevant to our work on methods guidance.
+      Collects core outcome sets for trials and reviews. We do not run it, but
+      we point people to it.
 
   # TODO: CORE-SR. We could not identify this initiative from the workspace or
   # from public sources, so nothing is published for it. Add the full name and

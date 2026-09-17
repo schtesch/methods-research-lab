@@ -30,9 +30,9 @@ date-format: "MMMM YYYY"
 We study how researchers develop, test, and use research methods.
 :::
 
-Research methods decide what a study can show. We look at how methods are
-developed, tested, chosen and reported, and we build practical resources that
-other researchers can use.
+The methods you choose decide what your study can show. We look at how
+researchers pick, test and report those methods, and we build tools that make
+the choices easier.
 
 ## What we are working on {#projects}
 
@@ -40,27 +40,27 @@ other researchers can use.
 
 ## What we are considering {#considering}
 
-Ideas we are exploring. None of these is a commitment yet.
+Things we are thinking about. None of it is a promise yet.
 
 {{< lab-projects planning >}}
 
 ## Related initiatives {#related}
 
-Work run by others that we contribute to or find useful. These are not our
-projects.
+Other people run these. We either help with them or simply find them
+useful. None of them is ours.
 
 {{< lab-related >}}
 
 ## About the group {#about}
 
-People from several institutions work together here on shared methods-research
-projects. Most of us also run trials, systematic reviews or guideline work, and
-we bring that experience into how we study methods.
+We are researchers at several institutions who work together on methods.
+Most of us also run trials, write reviews or sit on guideline panels, and that
+shapes how we study methods.
 
 Based at the University of Basel, with international collaborators across
 several institutions.
 
-We welcome collaboration with researchers interested in methods research.
+We are keen to work with other researchers interested in methods research.
 
 ### Members
 
@@ -72,7 +72,7 @@ We welcome collaboration with researchers interested in methods research.
 
 ## Contact {#contact}
 
-Write to Stefan Schandelmaier at
+Email Stefan Schandelmaier at
 [s.schandelmaier@gmail.com](mailto:s.schandelmaier@gmail.com).
 
 ```{=html}
