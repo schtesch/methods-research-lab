@@ -16,7 +16,7 @@ metadata-files:
 website:
   title: "Methods Research Lab"
   site-url: "https://lab.methods-research.org"
-  description: "An international methods research group based at the University of Basel. We study how researchers develop, test, and use research methods."
+  description: "Stefan Schandelmaier leads the Methods Research Lab at the University of Basel. We study research methods and build tools to support researchers' decisions."
   favicon: assets/favicon.svg
   # Absolute URL: relative paths here resolve against each page's own directory.
   image: "https://lab.methods-research.org/assets/social.jpg"

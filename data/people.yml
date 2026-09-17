@@ -19,7 +19,7 @@ people:
   members:
     - name: "Stefan Schandelmaier"
       university: "University of Basel"
-      role: "Lead"
+      role: "Group leader"
       order: 1
       # TODO: add a LinkedIn URL if you want one shown.
       linkedin: ""

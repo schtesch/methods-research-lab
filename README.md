@@ -122,7 +122,16 @@ No photos, and no job titles beyond the lead.
 
 `name`, `order`, `url`, `description`. They all render inside one small tinted
 card with no logos, opening on click, so nothing external can be mistaken for a
-Lab project. Keep each description explicit about the relationship.
+Lab project. The section introduction identifies them as independently led;
+each description explains what the resource helps researchers do.
+
+### Talks and posters — `index.qmd`
+
+Keep a short selection of conference contributions on the homepage, with
+upcoming events first and past presentations in reverse date order. Use
+absolute dates, link to programmes or presentation materials, and distinguish
+conference dates from the date of an individual talk. Update upcoming entries
+after the meeting. Add exact titles and presenters only when confirmed.
 
 ### Logos and assets
 
@@ -148,6 +157,7 @@ updates it; nothing is edited by hand and there is no JavaScript involved.
 - Links to other sites need `{target="_blank" rel="noopener noreferrer"}`.
   Quarto's `link-external-newwindow` does not run under `minimal: true`, and the
   shortcodes already add these attributes themselves.
-- No analytics, no tracking, no cookie banner, no news or blog section.
+- No analytics, no tracking or cookie banner. A short talks and posters section
+  highlights conference contributions; there is no general news or blog section.
 - The University of Basel appears as a textual affiliation only — no logo and no
   corporate branding.

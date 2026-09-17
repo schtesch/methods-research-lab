@@ -172,7 +172,7 @@ local function project_cards(projects, meta)
   for _, row in ipairs(projects) do
     local project = row.entry
     out[#out + 1] = table.concat({
-      '<article class="project-card">',
+      '<article class="project-card" id="project-', escape(project.id), '">',
       '<div class="project-head">',
       project_mark(project),
       '<h3 class="project-name">', escape(project.name), "</h3>",
