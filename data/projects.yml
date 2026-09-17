@@ -1,0 +1,99 @@
+# Projects shown on the homepage.
+#
+# status: current   -> "What we are working on"  (project cards)
+#         planning  -> "What we are considering" (lighter list, no buttons)
+# order:            -> position within its own section, lowest first
+# logo:             -> path under assets/; leave empty for a plain monogram tile
+# website/outputs:  -> leave empty and the button disappears automatically
+#
+# Nothing else needs editing to add, remove or reorder a project.
+
+projects:
+  - id: type-me
+    name: "TYPE-ME"
+    order: 1
+    status: current
+    logo: "assets/projects/type-me.svg"
+    logo-alt: "TYPE-ME logo: a magnifying glass containing smaller magnifying glasses"
+    description: >-
+      Methods research takes many forms that go by many different names.
+      TYPE-ME sorts these studies into clear types, so researchers can plan,
+      report and find this work more easily.
+    website: "https://methods-research.org"
+    outputs: "https://osf.io/preprints/metaarxiv/nyj2p_v1"
+
+  - id: stream
+    name: "STREAM"
+    order: 2
+    status: current
+    logo: ""
+    logo-alt: ""
+    description: >-
+      People who write guidance on research methods have little guidance of
+      their own. STREAM examines how such guidance is produced today and
+      develops practical standards for producing it well.
+    # TODO: the STREAM site is a placeholder until DNS for stream.methods-research.org
+    # is live. Blank this field to hide the button in the meantime.
+    website: "https://stream.methods-research.org"
+    outputs: "https://doi.org/10.1016/j.jclinepi.2026.112184"
+
+  - id: lights
+    name: "LIGHTS"
+    order: 3
+    status: current
+    logo: "assets/projects/lights.png"
+    logo-alt: "LIGHTS logo"
+    description: >-
+      Advice on research methods is scattered across thousands of papers.
+      LIGHTS collects it in one searchable library that is kept up to date.
+    website: "https://lights.science"
+    outputs: "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2801408"
+
+  - id: iceman
+    name: "ICEMAN"
+    order: 4
+    status: current
+    logo: "assets/projects/iceman.svg"
+    logo-alt: "ICEMAN logo"
+    description: >-
+      Trials and reviews often report that a treatment worked better in one
+      group of patients than another. ICEMAN gives researchers a structured
+      way to judge whether such a claim is credible.
+    website: "https://www.iceman.help"
+    outputs: "https://www.iceman.help/about.html#publications-and-endorsements"
+
+  - id: registry
+    name: "A prospective registry for methods research"
+    order: 1
+    status: planning
+    description: >-
+      Methods studies are rarely registered before they begin, so it is hard
+      to see what is underway or whether plans changed along the way. We are
+      exploring what such a registry would need in order to be useful.
+
+  - id: review-guidance
+    name: "Guidance for reviews of applied methods and meta-epidemiology"
+    order: 2
+    status: planning
+    description: >-
+      Two common types of methods research still have no agreed standards for
+      how to conduct or report them. We are considering how such guidance
+      could be developed.
+
+  - id: methodological-evidence
+    name: "What counts as methodological evidence"
+    order: 3
+    status: planning
+    description: >-
+      What counts as evidence that one method works better than another? We
+      want to describe the kinds of evidence methods researchers rely on, and
+      how much weight each kind can carry.
+
+  - id: ai-decisions
+    name: "AI-mediated methodological decisions"
+    order: 4
+    status: planning
+    description: >-
+      Researchers increasingly ask AI tools how to design and analyse their
+      studies. We are considering how to study what these tools recommend and
+      what that means for methods guidance.

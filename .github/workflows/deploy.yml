@@ -1,0 +1,48 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.9.37"
+
+      # Quarto is the only build dependency: the YAML in data/ is read by the
+      # Lua shortcodes in _extensions/, so there is no Python or R to install.
+      - name: Render site
+        run: quarto render
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

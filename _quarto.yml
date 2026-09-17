@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - CNAME
+    - robots.txt
+    - .nojekyll
+
+# The three data files are merged into document metadata here. The shortcodes
+# in _extensions/mrlab/lab read them from there, so no page holds site data.
+metadata-files:
+  - data/projects.yml
+  - data/people.yml
+  - data/related.yml
+
+website:
+  title: "Methods Research Lab"
+  site-url: "https://lab.methods-research.org"
+  description: "An international methods research group based at the University of Basel. We study how researchers develop, test, and use research methods."
+  favicon: assets/favicon.svg
+  # Absolute URL: relative paths here resolve against each page's own directory.
+  image: "https://lab.methods-research.org/assets/social.jpg"
+  image-alt: "Methods Research Lab"
+  search: false
+  open-graph:
+    site-name: "Methods Research Lab"
+    locale: en_GB
+  twitter-card:
+    card-style: summary_large_image
+
+format:
+  html:
+    # No Bootstrap. The whole site is one page of plain CSS.
+    theme: none
+    minimal: true
+    # The page writes its own H1 and header; suppress Quarto's title block.
+    title-block-style: none
+    template-partials:
+      - partials/title-block.html
+    css: assets/lab.css
+    toc: false
+    anchor-sections: false
+    # Quarto's link-external-newwindow does not run under `minimal: true`,
+    # so prose links to other sites carry the attributes themselves:
+    #   [text](https://example.org){target="_blank" rel="noopener noreferrer"}
+    # The shortcodes in _extensions/mrlab/lab already emit them.
+    canonical-url: true
+    # This page has no code, citations or footnotes, so none of the
+    # JavaScript Quarto ships for them is needed.
+    code-copy: false
+    code-tools: false
+    citations-hover: false
+    footnotes-hover: false
+    include-in-header: includes/metadata.html

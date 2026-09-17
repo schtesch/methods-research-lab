@@ -1,0 +1,38 @@
+name: External links
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.9.37"
+
+      # docs/ is not committed, so the site has to be built before it is checked.
+      - name: Render site
+        run: quarto render
+
+      - name: Check published links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --root-dir ./docs
+            --max-retries 3
+            --accept 200..=399,403,412,429
+            './docs/**/*.html'
+          fail: true
+          lycheeVersion: v0.24.2

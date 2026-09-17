@@ -1,0 +1,87 @@
+---
+pagetitle: "Methods Research Lab"
+description: "An international methods research group based at the University of Basel. We study how researchers develop, test, and use research methods."
+description-meta: "An international methods research group based at the University of Basel. We study how researchers develop, test, and use research methods."
+date-modified: last-modified
+date-format: "MMMM YYYY"
+---
+
+```{=html}
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<header class="site-header" id="top">
+  <a class="site-mark" href="#top">
+    <img src="assets/logo.png" alt="Methods Research Lab — back to top"
+         width="230" height="70">
+  </a>
+  <nav class="site-nav" aria-label="Page sections">
+    <a href="#projects">Projects</a>
+    <a href="#about">About the group</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main class="site-main" id="main-content">
+```
+
+# Methods Research Lab
+
+::: {.lead}
+We study how researchers develop, test, and use research methods.
+:::
+
+Research methods decide what a study can show. We look at how methods are
+developed, tested, chosen and reported, and we build practical resources that
+other researchers can use.
+
+## What we are working on {#projects}
+
+{{< lab-projects current >}}
+
+## What we are considering {#considering}
+
+Ideas we are exploring. None of these is a commitment yet.
+
+{{< lab-projects planning >}}
+
+## Related initiatives {#related}
+
+Work run by others that we contribute to or find useful. These are not our
+projects.
+
+{{< lab-related >}}
+
+## About the group {#about}
+
+People from several institutions work together here on shared methods-research
+projects. Most of us also run trials, systematic reviews or guideline work, and
+we bring that experience into how we study methods.
+
+Based at the University of Basel, with international collaborators across
+several institutions.
+
+We welcome collaboration with researchers interested in methods research.
+
+### Members
+
+{{< lab-members >}}
+
+### Collaborators
+
+{{< lab-collaborators >}}
+
+## Contact {#contact}
+
+Write to Stefan Schandelmaier at
+[s.schandelmaier@gmail.com](mailto:s.schandelmaier@gmail.com).
+
+```{=html}
+</main>
+```
+
+::: {.site-footer role="contentinfo"}
+© Stefan Schandelmaier · Methods Research Lab ·
+[s.schandelmaier@gmail.com](mailto:s.schandelmaier@gmail.com) ·
+Last updated {{< meta date-modified >}} ·
+Supported by an [SNSF Ambizione grant](https://data.snf.ch/grants/grant/223702){target="_blank" rel="noopener noreferrer"}.
+:::

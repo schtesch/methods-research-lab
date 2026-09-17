@@ -1,0 +1,503 @@
+/* Methods Research Lab
+   Plain CSS, no framework, no webfonts. The palette is taken from the shared
+   methods-research mark so the Lab reads as part of the same family. */
+
+:root {
+  --ground: #fbfbfa;
+  --surface: #ffffff;
+  --ink: #1b2430;
+  --ink-heading: #082b58;
+  --ink-muted: #5f6b78;
+  --link: #1b6099;
+  --link-hover: #082b58;
+  --accent: #4297e8;
+  /* Darker than --accent so the ring clears 3:1 against the page. */
+  --focus: #2f80d0;
+  --rule: #e4e7ec;
+  --rule-strong: #d4dae1;
+
+  --measure: 38rem;
+  --page: 62rem;
+  --gutter: 1.25rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Quarto emits an empty title block because the page supplies its own H1. */
+#title-block-header {
+  display: none;
+}
+
+.site-main {
+  display: block;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 3rem;
+}
+
+/* ---------- links ---------- */
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.6rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: var(--gutter);
+  top: 0.5rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- header ---------- */
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 1.5rem var(--gutter) 1.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-mark {
+  display: inline-flex;
+  line-height: 0;
+}
+
+.site-mark img {
+  width: 230px;
+  height: auto;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.site-nav a {
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--ink-heading);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* ---------- headings and prose ---------- */
+
+h1,
+h2,
+h3 {
+  color: var(--ink-heading);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 3rem 0 0.75rem;
+  font-size: 2.125rem;
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  margin: 4rem 0 1.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  font-size: 1.375rem;
+  letter-spacing: -0.005em;
+}
+
+h3 {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.0625rem;
+}
+
+p {
+  max-width: var(--measure);
+  margin: 0 0 1.15rem;
+}
+
+.lead {
+  max-width: 44rem;
+  margin: 0 0 1.5rem;
+  color: var(--ink-heading);
+  font-size: 1.3125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.lead p {
+  max-width: none;
+  margin: 0;
+  font-size: inherit;
+}
+
+/* ---------- project cards ---------- */
+
+/* Two columns at most: four cards then sit as a tidy 2x2 rather than
+   leaving an orphan on a second row. */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 52rem;
+  margin: 0 0 0.5rem;
+}
+
+@media (min-width: 46rem) {
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem 1.4rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 0.4rem;
+}
+
+.project-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.7rem;
+}
+
+.project-mark {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 0.3rem;
+  object-fit: contain;
+}
+
+/* Projects without their own mark get a plain tile rather than a stand-in
+   logo, so nothing on the page looks like invented branding. */
+.project-mark--monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink-heading);
+  color: #fff;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.project-name {
+  margin: 0;
+  /* Long names wrap inside the card instead of pushing it wide. */
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 1.125rem;
+}
+
+.project-description {
+  flex: 1 1 auto;
+  max-width: none;
+  margin: 0 0 1rem;
+  color: var(--ink);
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  max-width: none;
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.project-link {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  color: var(--link-hover);
+  border-bottom-color: currentColor;
+}
+
+/* ---------- planning ---------- */
+
+/* Deliberately lighter than the project cards: no box, no buttons, so these
+   read as open questions rather than as running projects. */
+.planning-list {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 48rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.planning-item {
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--rule-strong);
+}
+
+.planning-name {
+  margin: 0 0 0.35rem;
+  color: var(--ink);
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.planning-description {
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+/* ---------- related initiatives ---------- */
+
+.related-panel {
+  max-width: 48rem;
+  padding: 1.25rem 1.4rem 1.35rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 0.4rem;
+}
+
+.related-list {
+  margin: 0;
+}
+
+.related-name {
+  margin: 0;
+  font-weight: 600;
+}
+
+.related-name + .related-description {
+  margin: 0.1rem 0 0;
+}
+
+.related-description {
+  max-width: var(--measure);
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+}
+
+.related-description + .related-name {
+  margin-top: 0.9rem;
+}
+
+/* ---------- people ---------- */
+
+.member-list {
+  display: grid;
+  gap: 1.15rem;
+  max-width: 48rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.member-name {
+  display: block;
+  color: var(--ink-heading);
+  font-weight: 600;
+}
+
+.member-university {
+  display: block;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+}
+
+.member-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.9rem;
+  margin-top: 0.15rem;
+}
+
+/* Small, quiet, and clearly secondary to the name. */
+.member-link {
+  color: var(--ink-muted);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.member-link:hover,
+.member-link:focus-visible {
+  color: var(--ink-heading);
+  border-bottom-color: currentColor;
+}
+
+.collaborator-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 0.6rem 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+}
+
+.collaborator-name {
+  display: block;
+}
+
+.collaborator-university {
+  display: block;
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- footer ---------- */
+
+.site-footer {
+  max-width: var(--page);
+  margin: 4rem auto 0;
+  padding: 1.1rem var(--gutter) 2.5rem;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-muted);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}
+
+.site-footer p {
+  max-width: none;
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--ink-muted);
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--ink-heading);
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 34rem) {
+  body {
+    font-size: 1rem;
+  }
+
+  .site-header {
+    padding-top: 1.25rem;
+  }
+
+  .site-mark img {
+    width: 190px;
+  }
+
+  .site-nav {
+    gap: 1.1rem;
+    font-size: 0.875rem;
+  }
+
+  h1 {
+    margin-top: 2.25rem;
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    margin-top: 3rem;
+    font-size: 1.25rem;
+  }
+
+  .lead {
+    font-size: 1.1875rem;
+  }
+
+  .project-card,
+  .related-panel {
+    padding: 1.1rem 1.15rem;
+  }
+}
+
+/* ---------- print ---------- */
+
+@media print {
+  .site-header,
+  .skip-link {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+  }
+}

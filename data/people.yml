@@ -1,0 +1,168 @@
+# People shown in "About the group".
+#
+# members       -> name, university, and small grey profile links
+# collaborators -> name and university only, in one flat list
+#
+# Both lists are sorted by `order`, lowest first. To reorder, change the
+# numbers; gaps are fine. Any profile link left empty is simply not shown.
+#
+# Affiliation sources: ORCID employment records, the STREAM protocol
+# (J Clin Epidemiol 2026), the LIGHTS team page, and the ICEMAN development
+# group as published in CMAJ 2020.
+
+people:
+  members:
+    - name: "Stefan Schandelmaier"
+      university: "University of Basel"
+      order: 1
+      # TODO: add a LinkedIn URL if you want one shown.
+      linkedin: ""
+      scholar: "https://scholar.google.com/citations?user=CyHuLZgAAAAJ"
+      orcid: "https://orcid.org/0000-0002-8429-0337"
+
+    - name: "Malena Chiaborelli"
+      university: "University of Basel"
+      order: 2
+      linkedin: ""
+      # No public Google Scholar profile found.
+      scholar: ""
+      orcid: "https://orcid.org/0000-0002-2498-0467"
+
+    - name: "Julian Hirt"
+      university: "University of Basel and Eastern Switzerland University of Applied Sciences"
+      order: 3
+      linkedin: ""
+      scholar: "https://scholar.google.com/citations?user=SGn7Pf0AAAAJ"
+      orcid: "https://orcid.org/0000-0001-6589-3936"
+
+    - name: "Matthias Briel"
+      university: "University of Basel"
+      order: 4
+      linkedin: ""
+      scholar: "https://scholar.google.com/citations?user=QX74YwIAAAAJ"
+      orcid: "https://orcid.org/0000-0002-2070-5230"
+
+  # Alphabetical by surname. Drawn from the documented author and team lists of
+  # TYPE-ME, STREAM, LIGHTS and ICEMAN.
+  collaborators:
+    - name: "Michael Borenstein"
+      university: "Biostat, Inc."
+      order: 10
+    - name: "Anne-Laure Boulesteix"
+      university: "LMU Munich"
+      order: 20
+    - name: "Frank Bretz"
+      university: "Novartis and Medical University of Vienna"
+      order: 30
+    - name: "Ivan Buljan"
+      university: "University of Split"
+      order: 40
+    - name: "Saifur Rahman Chowdhury"
+      university: "McMaster University"
+      order: 50
+    - name: "Issa J. Dahabreh"
+      university: "Brown University"
+      order: 60
+    - name: "Niveditha Devasenapathy"
+      university: "Indian Institute of Public Health-Delhi"
+      order: 70
+    - name: "Hannah Ewald"
+      university: "University of Basel"
+      order: 80
+    - name: "Joel Gagnier"
+      university: "University of Michigan"
+      order: 90
+    - name: "Federico Germini"
+      university: "McMaster University"
+      order: 100
+    - name: "Gordon Guyatt"
+      university: "McMaster University"
+      order: 110
+    - name: "Rodney A. Hayward"
+      university: "University of Michigan"
+      order: 120
+    - name: "Georg Heinze"
+      university: "Medical University of Vienna"
+      order: 130
+    - name: "Richard Hooper"
+      university: "Queen Mary University of London"
+      order: 140
+    - name: "John P. A. Ioannidis"
+      university: "Stanford University"
+      order: 150
+    - name: "Hanan Khalil"
+      university: "La Trobe University"
+      order: 160
+    - name: "Daeria Lawson"
+      university: "McMaster University"
+      order: 170
+    - name: "João Pedro Lima"
+      university: "McMaster University and Harvard T.H. Chan School of Public Health"
+      order: 180
+    - name: "Shanshan Lin"
+      university: "Johns Hopkins University"
+      order: 190
+    - name: "Ana Marušić"
+      university: "University of Split"
+      order: 200
+    - name: "David Moher"
+      university: "Ottawa Hospital Research Institute and University of Ottawa"
+      order: 210
+    - name: "Zachary Munn"
+      university: "University of Adelaide"
+      order: 220
+    - name: "Jonathan Nordmann"
+      university: "University of Basel"
+      order: 230
+    - name: "Davide Papola"
+      university: "University of Verona"
+      order: 240
+    - name: "Dawid Pieper"
+      university: "Brandenburg Medical School Theodor Fontane"
+      order: 250
+    - name: "Livia Puljak"
+      university: "Catholic University of Croatia"
+      order: 260
+    - name: "Willi Sauerbrei"
+      university: "University of Freiburg"
+      order: 270
+    - name: "Christopher H. Schmid"
+      university: "Brown University"
+      order: 280
+    - name: "Christoph Schönenberger"
+      university: "University of Basel"
+      order: 290
+    - name: "Frances Shiely"
+      university: "University College Cork"
+      order: 300
+    - name: "Derek Stewart"
+      university: "University of Galway"
+      order: 310
+    - name: "Xin Sun"
+      university: "Sichuan University"
+      order: 320
+    - name: "Lehana Thabane"
+      university: "McMaster University"
+      order: 330
+    - name: "Geert J. M. G. van der Heijden"
+      university: "Academic Centre for Dentistry Amsterdam"
+      order: 340
+    - name: "Ravi Varadhan"
+      university: "Johns Hopkins University"
+      order: 350
+    - name: "Michael Walsh"
+      university: "McMaster University"
+      order: 360
+    - name: "Linan Zeng"
+      university: "McMaster University and Sichuan University"
+      order: 370
+
+    # TODO: affiliation not documented anywhere in the workspace or online.
+    # Fill in the university and uncomment to show on the site.
+    # - name: "Alessio Foschiani"
+    #   university: ""
+    #   order: 85
+
+    # The LIGHTS technical staff (Holger Keibel and Johannes Porzelt, Karakun AG)
+    # are deliberately left out: they are a software vendor rather than research
+    # collaborators. Add them here if you would rather credit them.

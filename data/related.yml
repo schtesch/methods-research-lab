@@ -1,0 +1,36 @@
+# Initiatives, networks and resources outside the Lab.
+#
+# These are NOT our projects. Keep each description short and make the
+# relationship explicit, so the page never implies that we run them.
+#
+# Sorted by `order`, lowest first.
+
+related:
+  - name: "GRADE Working Group"
+    order: 1
+    url: "https://www.gradeworkinggroup.org"
+    description: >-
+      Develops the GRADE approach to rating certainty of evidence. Members of
+      the Lab contribute to some of its methods guidance.
+
+  - name: "EQUATOR Network"
+    order: 2
+    url: "https://www.equator-network.org"
+    description: >-
+      Maintains a library of reporting guidelines for health research. An
+      external resource we use and study.
+
+  - name: "COMET Initiative"
+    order: 3
+    url: "https://www.comet-initiative.org"
+    description: >-
+      Collects core outcome sets for trials and reviews. An external resource
+      relevant to our work on methods guidance.
+
+  # TODO: CORE-SR. We could not identify this initiative from the workspace or
+  # from public sources, so nothing is published for it. Add the full name and
+  # URL below and uncomment to show it.
+  # - name: "CORE-SR"
+  #   order: 4
+  #   url: ""
+  #   description: ""
