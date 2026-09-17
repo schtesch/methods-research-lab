@@ -13,7 +13,7 @@ code.
 | Path | What it is |
 | --- | --- |
 | `index.qmd` | The whole site — one page |
-| `data/projects.yml` | Current and planned projects |
+| `data/projects.yml` | Current and planned projects, and every project link |
 | `data/people.yml` | Members and collaborators |
 | `data/related.yml` | External initiatives and resources |
 | `_extensions/mrlab/lab/lab.lua` | Shortcodes that turn the YAML into HTML |
@@ -72,35 +72,53 @@ host. The address stays ours either way.
   logo-alt: "EXAMPLE logo"
   description: >-
     One or two plain sentences.
-  website: "https://example.org"        # optional
-  outputs: "https://example.org/papers" # optional
+  links:                   # omit entirely and the card shows no expander
+    - group: "Visit"
+      order: 1
+      items:
+        - text: "Project website"
+          url: "https://example.org"
+    - group: "Publications"
+      order: 2
+      items:
+        - text: "Protocol, J Clin Epidemiol 2026"
+          url: "https://doi.org/..."
 ```
 
 - **Reorder projects:** change `order`. Lowest number first, within its own
   section. The numbers need not be consecutive.
 - **Move something from planning to current:** change `status: planning` to
-  `status: current` and give it an `order` that puts it where you want. The page
-  moves it between sections by itself.
-- **Hide a button:** leave `website` or `outputs` empty. The button disappears
-  rather than rendering a dead link.
+  `status: current` and give it an `order`. The page moves it between sections
+  by itself — and a current project gets its own card, while planned items all
+  share one.
+- **Add a link:** add an item to an existing group, or add a whole group. The
+  card counts the links for its "Links 13" label and lays the groups out itself.
+  Group names are free text: `Visit`, `Publications`, `Used by`, `Download` and
+  `In progress` are in use, but any label works.
+- **No links at all:** leave `links` out and the card simply has no expander.
 - **No logo yet:** leave `logo` empty and the card shows a plain monogram tile
   instead of a stand-in logo.
 
+Cards sit side by side, so keep descriptions to a similar length or the row
+looks ragged. Roughly 140 characters works well.
+
 ### People — `data/people.yml`
 
-Two lists, `members` and `collaborators`, both sorted by `order`.
+`members` is a flat list: `name`, `university`, `order`, and optionally
+`linkedin`, `scholar` and `orcid`. A profile link left empty is not shown.
 
-Members carry `name`, `university`, `order`, and optionally `linkedin`,
-`scholar` and `orcid`. A profile link left empty is simply not shown.
-Collaborators carry only `name`, `university` and `order`.
+`collaborator-groups` is one entry per project, each with its own `people`
+list of `name`, `university` and `order`. Somebody who works on three projects
+appears three times — that is intended. Their affiliation is repeated with
+them, so if one changes, update every copy.
 
 No job titles and no photos, by design.
 
 ### Related initiatives — `data/related.yml`
 
-`name`, `order`, `url`, `description`. These render more lightly than the
-project cards so that nothing external can be mistaken for a Lab project. Keep
-each description explicit about the relationship.
+`name`, `order`, `url`, `description`. They all render inside a single tinted
+card with no logos, so nothing external can be mistaken for a Lab project.
+Keep each description explicit about the relationship.
 
 ### Logos and assets
 

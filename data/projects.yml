@@ -1,12 +1,16 @@
 # Projects shown on the homepage.
 #
-# status: current   -> "What we are working on"  (project cards)
-#         planning  -> "What we are considering" (lighter list, no buttons)
+# status: current   -> "What we are working on": one expandable card each
+#         planning  -> "What we are considering": all items in a single card
 # order:            -> position within its own section, lowest first
 # logo:             -> path under assets/; leave empty for a plain monogram tile
-# website/outputs:  -> leave empty and the button disappears automatically
 #
-# Nothing else needs editing to add, remove or reorder a project.
+# Each current project carries a `links:` list of named groups. Groups render
+# in `order`, items in the order written. Add a group, add an item, or drop
+# either: the card counts them and lays them out by itself. A project with no
+# links shows no disclosure control at all.
+#
+# Every URL below was opened and checked. Do not add one you have not.
 
 projects:
   - id: type-me
@@ -17,10 +21,22 @@ projects:
     logo-alt: "TYPE-ME logo: a magnifying glass containing smaller magnifying glasses"
     description: >-
       Methods research goes by dozens of different names, which makes it hard
-      to describe and hard to find. TYPE-ME sorts it into clear types, so you
-      can say what you did and find what others have done.
-    website: "https://methods-research.org"
-    outputs: "https://osf.io/preprints/metaarxiv/nyj2p_v1"
+      to find. TYPE-ME sorts it into clear types, so you can say what you did.
+    links:
+      - group: "Visit"
+        order: 1
+        items:
+          - text: "Project website"
+            url: "https://methods-research.org"
+          - text: "Condensed typology"
+            url: "https://methods-research.org/simplified.html"
+          - text: "Interactive typology"
+            url: "https://methods-research.org/explore.html"
+      - group: "Publications"
+        order: 2
+        items:
+          - text: "Preprint, MetaArXiv 2026"
+            url: "https://osf.io/preprints/metaarxiv/nyj2p_v1"
 
   - id: stream
     name: "STREAM"
@@ -32,10 +48,23 @@ projects:
       People who write methods guidance get almost no guidance themselves.
       STREAM looks at how they work now, and builds standards for doing it
       well.
-    # TODO: the STREAM site is a placeholder until DNS for stream.methods-research.org
-    # is live. Blank this field to hide the button in the meantime.
-    website: "https://stream.methods-research.org"
-    outputs: "https://doi.org/10.1016/j.jclinepi.2026.112184"
+    links:
+      - group: "Visit"
+        order: 1
+        items:
+          # TODO: live once DNS for stream.methods-research.org exists.
+          - text: "Project website"
+            url: "https://stream.methods-research.org"
+      - group: "Publications"
+        order: 2
+        items:
+          - text: "Protocol, J Clin Epidemiol 2026"
+            url: "https://doi.org/10.1016/j.jclinepi.2026.112184"
+      - group: "Funding"
+        order: 3
+        items:
+          - text: "SNSF Ambizione grant 223702"
+            url: "https://data.snf.ch/grants/grant/223702"
 
   - id: lights
     name: "LIGHTS"
@@ -46,8 +75,23 @@ projects:
     description: >-
       Advice on research methods sits scattered across thousands of papers.
       LIGHTS gathers it into one library you can actually search.
-    website: "https://lights.science"
-    outputs: "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2801408"
+    links:
+      - group: "Visit"
+        order: 1
+        items:
+          - text: "Project website"
+            url: "https://lights.science"
+          - text: "Search the library"
+            url: "https://lights.science/app/search/"
+          - text: "Search help"
+            url: "https://lights.science/help/"
+          - text: "Team and supporters"
+            url: "https://lights.science/team-and-supporters/"
+      - group: "Publications"
+        order: 2
+        items:
+          - text: "JAMA Netw Open 2023"
+            url: "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2801408"
 
   - id: iceman
     name: "ICEMAN"
@@ -59,8 +103,48 @@ projects:
       Trials and reviews often claim a treatment worked better in one group of
       patients than another. ICEMAN helps you work out whether to believe
       it.
-    website: "https://www.iceman.help"
-    outputs: "https://www.iceman.help/about.html#publications-and-endorsements"
+    links:
+      - group: "Visit"
+        order: 1
+        items:
+          - text: "Project website"
+            url: "https://www.iceman.help"
+          - text: "ICEMAN online"
+            url: "https://www.iceman.help/tool.html"
+          - text: "User manual"
+            url: "https://www.iceman.help/manual/"
+      - group: "Publications"
+        order: 2
+        items:
+          - text: "CMAJ 2020, primary reference"
+            url: "https://doi.org/10.1503/cmaj.200077"
+          - text: "J Clin Epidemiol 2019, background"
+            url: "https://doi.org/10.1016/j.jclinepi.2019.05.014"
+          - text: "JAMA Netw Open 2024, commentary"
+            url: "https://doi.org/10.1001/jamanetworkopen.2024.3339"
+      - group: "Used by"
+        order: 3
+        items:
+          - text: "Cochrane Handbook, section 10.11.6"
+            url: "https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10#section-10-11-6"
+          - text: "GRADE guidance 36, J Clin Epidemiol 2023"
+            url: "https://doi.org/10.1016/j.jclinepi.2023.03.003"
+          - text: "Core GRADE 3, BMJ 2025"
+            url: "https://doi.org/10.1136/bmj-2024-081905"
+      - group: "Download"
+        order: 4
+        items:
+          - text: "Form for trials (.docx)"
+            url: "https://www.iceman.help/files/iceman-rct-form.docx"
+          - text: "Form for meta-analyses (.docx)"
+            url: "https://www.iceman.help/files/iceman-meta-analysis-form.docx"
+          - text: "Reporting templates (.docx)"
+            url: "https://www.iceman.help/files/iceman-table-templates.docx"
+      - group: "In progress"
+        order: 5
+        items:
+          - text: "OSF, how people have used ICEMAN"
+            url: "https://osf.io/zv3jh/overview"
 
   - id: registry
     name: "A prospective registry for methods research"

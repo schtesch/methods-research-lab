@@ -5,6 +5,7 @@
 :root {
   --ground: #fbfbfa;
   --surface: #ffffff;
+  --surface-sunk: #f6f7f9;
   --ink: #1b2430;
   --ink-heading: #082b58;
   --ink-muted: #5f6b78;
@@ -17,7 +18,7 @@
   --rule-strong: #d4dae1;
 
   --measure: 38rem;
-  --page: 62rem;
+  --page: 74rem;
   --gutter: 1.25rem;
 }
 
@@ -164,21 +165,21 @@ h3 {
 }
 
 h1 {
-  margin: 3rem 0 0.75rem;
+  margin: 2.5rem 0 0.75rem;
   font-size: 2.125rem;
   letter-spacing: -0.015em;
 }
 
 h2 {
-  margin: 4rem 0 1.25rem;
-  padding-top: 1.75rem;
+  margin: 3rem 0 1.25rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--rule);
   font-size: 1.375rem;
   letter-spacing: -0.005em;
 }
 
 h3 {
-  margin: 2rem 0 0.75rem;
+  margin: 1.75rem 0 0.75rem;
   font-size: 1.0625rem;
 }
 
@@ -205,26 +206,20 @@ p {
 
 /* ---------- project cards ---------- */
 
-/* Two columns at most: four cards then sit as a tidy 2x2 rather than
-   leaving an orphan on a second row. */
+/* Cards fill the width available. `align-items: start` keeps each card its own
+   height, so expanding one does not stretch the rest of its row. */
 .project-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  align-items: start;
   gap: 1rem;
-  max-width: 52rem;
   margin: 0 0 0.5rem;
-}
-
-@media (min-width: 46rem) {
-  .project-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  padding: 1.35rem 1.4rem 1.2rem;
+  padding: 1.15rem 1.2rem 1.1rem;
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: 0.4rem;
@@ -233,14 +228,14 @@ p {
 .project-head {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 0.7rem;
+  gap: 0.7rem;
+  margin-bottom: 0.6rem;
 }
 
 .project-mark {
   flex: 0 0 auto;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 0.3rem;
   object-fit: contain;
 }
@@ -253,7 +248,7 @@ p {
   justify-content: center;
   background: var(--ink-heading);
   color: #fff;
-  font-size: 1.375rem;
+  font-size: 1.1875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -263,108 +258,183 @@ p {
   /* Long names wrap inside the card instead of pushing it wide. */
   min-width: 0;
   overflow-wrap: anywhere;
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
 }
 
 .project-description {
-  flex: 1 1 auto;
   max-width: none;
-  margin: 0 0 1rem;
-  color: var(--ink);
-}
-
-.project-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.25rem;
-  max-width: none;
-  margin: 0;
+  margin: 0 0 0.9rem;
   font-size: 0.9375rem;
-}
-
-.project-link {
-  color: var(--link);
-  text-decoration: none;
-  border-bottom: 1px solid var(--accent);
-}
-
-.project-link:hover,
-.project-link:focus-visible {
-  color: var(--link-hover);
-  border-bottom-color: currentColor;
-}
-
-/* ---------- planning ---------- */
-
-/* Deliberately lighter than the project cards: no box, no buttons, so these
-   read as open questions rather than as running projects. */
-.planning-list {
-  display: grid;
-  gap: 1.5rem;
-  max-width: 48rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.planning-item {
-  padding-left: 1.1rem;
-  border-left: 2px solid var(--rule-strong);
-}
-
-.planning-name {
-  margin: 0 0 0.35rem;
   color: var(--ink);
-  font-size: 1.0625rem;
+}
+
+/* ---------- the links disclosure ---------- */
+
+/* <details> gives expand and collapse, keyboard operation and a correct
+   accessibility role with no JavaScript. */
+.project-links {
+  margin-top: auto;
+  border-top: 1px solid var(--rule);
+  padding-top: 0.65rem;
+}
+
+.project-links > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  list-style: none;
+  cursor: pointer;
+  color: var(--link);
+  font-size: 0.875rem;
   font-weight: 600;
 }
 
-.planning-description {
-  max-width: var(--measure);
-  margin: 0;
-  color: var(--ink-muted);
+.project-links > summary::-webkit-details-marker {
+  display: none;
 }
 
-/* ---------- related initiatives ---------- */
+.project-links > summary::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
 
-.related-panel {
-  max-width: 48rem;
+.project-links[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-links > summary::before {
+    transition: none;
+  }
+}
+
+.project-links > summary:hover,
+.project-links > summary:focus-visible {
+  color: var(--link-hover);
+}
+
+.link-count {
+  color: var(--ink-muted);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.link-groups {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.link-group-name {
+  margin: 0 0 0.2rem;
+  color: var(--ink-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.link-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.link-list li {
+  margin-bottom: 0.3rem;
+}
+
+.link-list a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.link-list a:hover,
+.link-list a:focus-visible {
+  border-bottom-color: currentColor;
+}
+
+/* ---------- planned work and related initiatives ---------- */
+
+/* One card holds the whole section. Planned work is not a set of running
+   projects, and the related initiatives are not ours, so neither gets the
+   per-project card treatment or a logo. */
+.panel-card {
   padding: 1.25rem 1.4rem 1.35rem;
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: 0.4rem;
 }
 
-.related-list {
-  margin: 0;
+.panel-card--related {
+  background: var(--surface-sunk);
 }
 
-.related-name {
+.panel-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1.1rem 2rem;
   margin: 0;
+  padding: 0 0 0 1.2rem;
+}
+
+/* Two columns rather than three, so four planned items fill both rows
+   instead of leaving an orphan. */
+@media (min-width: 58rem) {
+  .panel-card--planning .panel-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.panel-item {
+  padding-left: 0.2rem;
+}
+
+.panel-item::marker {
+  color: var(--ink-muted);
+  font-size: 0.8125rem;
+}
+
+.panel-item-name {
+  margin: 0 0 0.2rem;
+  color: var(--ink);
+  font-size: 0.9375rem;
   font-weight: 600;
 }
 
-.related-name + .related-description {
-  margin: 0.1rem 0 0;
+.panel-item-name a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
 }
 
-.related-description {
+.panel-item-name a:hover,
+.panel-item-name a:focus-visible {
+  color: var(--link-hover);
+  border-bottom-color: currentColor;
+}
+
+.panel-item-description {
   max-width: var(--measure);
   margin: 0;
   color: var(--ink-muted);
-  font-size: 0.9375rem;
-}
-
-.related-description + .related-name {
-  margin-top: 0.9rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
 }
 
 /* ---------- people ---------- */
 
 .member-list {
   display: grid;
-  gap: 1.15rem;
-  max-width: 48rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1.15rem 2rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -403,31 +473,52 @@ p {
   border-bottom-color: currentColor;
 }
 
-.collaborator-list {
+/* Four members, four cards above: matching the columns keeps the page tidy. */
+@media (min-width: 62rem) {
+  .member-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Collaborators sit in a plain numbered list per project. People who work on
+   more than one project appear more than once, by design. */
+.collab-groups {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-  gap: 0.6rem 1.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  align-items: start;
+  gap: 1.5rem 2rem;
+  margin-top: 0.5rem;
+}
+
+.collab-project {
+  margin: 0 0 0.4rem;
+  color: var(--ink-heading);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.collab-list {
   margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 0.9375rem;
-}
-
-.collaborator-name {
-  display: block;
-}
-
-.collaborator-university {
-  display: block;
-  color: var(--ink-muted);
+  padding-left: 1.5rem;
   font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.collab-list li {
+  margin-bottom: 0.25rem;
+}
+
+.collab-list li::marker {
+  color: var(--ink-muted);
 }
 
 /* ---------- footer ---------- */
 
 .site-footer {
   max-width: var(--page);
-  margin: 4rem auto 0;
+  margin: 3.5rem auto 0;
   padding: 1.1rem var(--gutter) 2.5rem;
   border-top: 1px solid var(--rule);
   color: var(--ink-muted);
@@ -470,12 +561,12 @@ p {
   }
 
   h1 {
-    margin-top: 2.25rem;
+    margin-top: 2rem;
     font-size: 1.75rem;
   }
 
   h2 {
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     font-size: 1.25rem;
   }
 
@@ -484,8 +575,12 @@ p {
   }
 
   .project-card,
-  .related-panel {
-    padding: 1.1rem 1.15rem;
+  .panel-card {
+    padding: 1.05rem 1.1rem;
+  }
+
+  .panel-list {
+    padding-left: 1.1rem;
   }
 }
 
@@ -499,5 +594,14 @@ p {
 
   body {
     background: #fff;
+  }
+
+  /* Print everything, including anything the reader left collapsed. */
+  .project-links > summary {
+    display: none;
+  }
+
+  .link-groups {
+    display: block;
   }
 }
