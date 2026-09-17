@@ -1,9 +1,11 @@
 # People shown in "About the group".
 #
-# members            -> name, university, and small grey profile links
-# collaborator-groups -> one numbered list per project, name and university
-#                        only. People may appear under several projects; that
-#                        is expected, not a mistake.
+# members            -> the core group: name, university, optional role, and
+#                        small grey profile links
+# collaborator-groups -> one list per project, keyed by the project `id` in
+#                        projects.yml. These render inside that project's card,
+#                        behind its "Collaborators" expander. People may appear
+#                        under several projects; that is expected.
 #
 # Everything is sorted by `order`, lowest first. Gaps in the numbers are fine.
 # A profile link left empty is simply not shown.
@@ -17,6 +19,7 @@ people:
   members:
     - name: "Stefan Schandelmaier"
       university: "University of Basel"
+      role: "Lead"
       order: 1
       # TODO: add a LinkedIn URL if you want one shown.
       linkedin: ""
@@ -46,7 +49,7 @@ people:
       orcid: "https://orcid.org/0000-0002-2070-5230"
 
   collaborator-groups:
-    - project: "TYPE-ME"
+    - project: type-me
       order: 1
       people:
         - name: "Anne-Laure Boulesteix"
@@ -71,7 +74,7 @@ people:
           university: "Catholic University of Croatia"
           order: 7
 
-    - project: "STREAM"
+    - project: stream
       order: 2
       people:
         - name: "Anne-Laure Boulesteix"
@@ -93,7 +96,7 @@ people:
           university: "University of Galway"
           order: 6
 
-    - project: "LIGHTS"
+    - project: lights
       order: 3
       people:
         - name: "Ivan Buljan"
@@ -136,7 +139,7 @@ people:
           university: "McMaster University and Sichuan University"
           order: 13
 
-    - project: "ICEMAN"
+    - project: iceman
       order: 4
       people:
         - name: "Michael Borenstein"

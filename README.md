@@ -14,7 +14,7 @@ code.
 | --- | --- |
 | `index.qmd` | The whole site — one page |
 | `data/projects.yml` | Current and planned projects, and every project link |
-| `data/people.yml` | Members and collaborators |
+| `data/people.yml` | The core group, and collaborators per project |
 | `data/related.yml` | External initiatives and resources |
 | `_extensions/mrlab/lab/lab.lua` | Shortcodes that turn the YAML into HTML |
 | `assets/lab.css` | All styling |
@@ -104,21 +104,25 @@ looks ragged. Roughly 140 characters works well.
 
 ### People — `data/people.yml`
 
-`members` is a flat list: `name`, `university`, `order`, and optionally
-`linkedin`, `scholar` and `orcid`. A profile link left empty is not shown.
+`members` is the core group: `name`, `university`, `order`, an optional
+`role` (only the lead carries one), and optionally `linkedin`, `scholar` and
+`orcid`. A profile link left empty is not shown.
 
-`collaborator-groups` is one entry per project, each with its own `people`
-list of `name`, `university` and `order`. Somebody who works on three projects
-appears three times — that is intended. Their affiliation is repeated with
-them, so if one changes, update every copy.
+`collaborator-groups` is one entry per project, keyed by that project's `id`
+in `projects.yml` — not its display name, so renaming a project cannot orphan
+its people. Each group holds a `people` list of `name`, `university` and
+`order`, and renders inside that project's card behind its "Collaborators"
+expander. Somebody who works on three projects appears three times; that is
+intended. Their affiliation is repeated with them, so if one changes, update
+every copy.
 
-No job titles and no photos, by design.
+No photos, and no job titles beyond the lead.
 
 ### Related initiatives — `data/related.yml`
 
-`name`, `order`, `url`, `description`. They all render inside a single tinted
-card with no logos, so nothing external can be mistaken for a Lab project.
-Keep each description explicit about the relationship.
+`name`, `order`, `url`, `description`. They all render inside one small tinted
+card with no logos, opening on click, so nothing external can be mistaken for a
+Lab project. Keep each description explicit about the relationship.
 
 ### Logos and assets
 

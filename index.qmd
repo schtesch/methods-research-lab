@@ -62,13 +62,11 @@ several institutions.
 
 We are keen to work with other researchers interested in methods research.
 
-### Members
+### Core group
 
 {{< lab-members >}}
 
-### Collaborators
-
-{{< lab-collaborators >}}
+Each project card above lists the collaborators who work on it.
 
 ## Contact {#contact}
 

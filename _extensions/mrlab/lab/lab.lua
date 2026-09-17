@@ -6,11 +6,11 @@
   emit plain HTML, so the page itself holds no project, person or link data.
 
   Shortcodes
-    {{< lab-projects current >}}   one expandable card per project
-    {{< lab-projects planning >}}  every planned item in a single card
-    {{< lab-related >}}            every external initiative in a single card
-    {{< lab-members >}}            group members with profile links
-    {{< lab-collaborators >}}      numbered lists, one per project
+    {{< lab-projects current >}}   one card per project, with two disclosures:
+                                   its links, and the people who work on it
+    {{< lab-projects planning >}}  planned work in one small card, on click
+    {{< lab-related >}}            external initiatives in one small card
+    {{< lab-members >}}            the core group, with profile links
 
   Conventions
     - every entry is sorted by its `order` field, lowest first
@@ -92,6 +92,18 @@ local function project_mark(project)
   })
 end
 
+-- One <details>. `label` names it, `count` is shown beside the label, and
+-- `hint` disambiguates it for screen readers across repeated cards.
+local function disclosure(label, count, hint, body, class)
+  return table.concat({
+    '<details class="disclosure ', class, '">',
+    "<summary>", label, ' <span class="disclosure-count">', tostring(count), "</span>",
+    '<span class="visually-hidden"> for ', escape(hint), "</span></summary>",
+    '<div class="disclosure-body">', body, "</div>",
+    "</details>",
+  })
+end
+
 -- The disclosure holding a project's links, grouped and counted.
 local function project_links(project)
   local groups = collect(project.links)
@@ -121,16 +133,41 @@ local function project_links(project)
   end
 
   if total == 0 then return "" end
-  return table.concat({
-    '<details class="project-links">',
-    "<summary>Links <span class=\"link-count\">", tostring(total), "</span>",
-    '<span class="visually-hidden"> for ', escape(project.name), "</span></summary>",
-    '<div class="link-groups">', table.concat(body, ""), "</div>",
-    "</details>",
-  })
+  return disclosure("Links", total, project.name,
+    '<div class="link-groups">' .. table.concat(body, "") .. "</div>",
+    "disclosure--links")
 end
 
-local function project_cards(projects)
+-- The people who work on one project. Collaborators live in people.yml and are
+-- matched to their project by `id`, so renaming a project cannot orphan them.
+local function project_collaborators(project, meta)
+  local people = meta.people
+  local groups = people and people["collaborator-groups"] or nil
+  if groups == nil then return "" end
+
+  local pid = text(project.id)
+  for _, group in ipairs(groups) do
+    if text(group.project) == pid then
+      local members = collect(group.people)
+      if #members == 0 then return "" end
+      local rows = {}
+      for _, member in ipairs(members) do
+        local person = member.entry
+        local line = escape(person.name)
+        if present(person.university) then
+          line = line .. ", " .. escape(person.university)
+        end
+        rows[#rows + 1] = "<li>" .. line .. "</li>"
+      end
+      return disclosure("Collaborators", #members, project.name,
+        '<ol class="collab-list">' .. table.concat(rows, "") .. "</ol>",
+        "disclosure--people")
+    end
+  end
+  return ""
+end
+
+local function project_cards(projects, meta)
   local out = { '<div class="project-grid">' }
   for _, row in ipairs(projects) do
     local project = row.entry
@@ -141,7 +178,10 @@ local function project_cards(projects)
       '<h3 class="project-name">', escape(project.name), "</h3>",
       "</div>",
       '<p class="project-description">', escape(project.description), "</p>",
+      '<div class="card-disclosures">',
       project_links(project),
+      project_collaborators(project, meta),
+      "</div>",
       "</article>",
     })
   end
@@ -149,30 +189,31 @@ local function project_cards(projects)
   return table.concat(out, "\n")
 end
 
--- Planned work and external initiatives each live in one card rather than a
--- card apiece, so neither can be mistaken for a running project.
-local function panel_card(rows, variant, linked)
-  -- Built as one string: the entries of `out` are joined with newlines, which
-  -- would otherwise split the class attribute across lines.
-  local out = {
-    '<article class="panel-card panel-card--' .. variant .. '">',
-    '<ol class="panel-list">',
-  }
+-- Planned work and external initiatives each live in one small card whose
+-- detail opens on click, so neither can be mistaken for a running project and
+-- neither pushes the rest of the page down.
+local function panel_card(rows, variant, label, linked)
+  local items = {}
   for _, row in ipairs(rows) do
     local entry = row.entry
     local name = escape(entry.name)
     if linked and present(entry.url) then
       name = external_link(entry.url, name, nil)
     end
-    out[#out + 1] = table.concat({
+    items[#items + 1] = table.concat({
       '<li class="panel-item">',
       '<h3 class="panel-item-name">', name, "</h3>",
       '<p class="panel-item-description">', escape(entry.description), "</p>",
       "</li>",
     })
   end
-  out[#out + 1] = "</ol></article>"
-  return table.concat(out, "\n")
+  return table.concat({
+    '<article class="panel-card panel-card--' .. variant .. '">',
+    disclosure(label, #rows, label,
+      '<ol class="panel-list">' .. table.concat(items, "") .. "</ol>",
+      "disclosure--panel"),
+    "</article>",
+  })
 end
 
 return {
@@ -183,15 +224,16 @@ return {
       return text(project.status) == want
     end)
     if #rows == 0 then return pandoc.Null() end
-    local html = (want == "planning") and panel_card(rows, "planning", false)
-      or project_cards(rows)
+    local html = (want == "planning")
+      and panel_card(rows, "planning", "Topics", false)
+      or project_cards(rows, meta)
     return pandoc.RawBlock("html", html)
   end,
 
   ["lab-related"] = function(args, kwargs, meta)
     local rows = collect(meta.related)
     if #rows == 0 then return pandoc.Null() end
-    return pandoc.RawBlock("html", panel_card(rows, "related", true))
+    return pandoc.RawBlock("html", panel_card(rows, "related", "Initiatives", true))
   end,
 
   ["lab-members"] = function(args, kwargs, meta)
@@ -214,9 +256,12 @@ return {
             person[profile.key], profile.label, name, "member-link")
         end
       end
+      local role = present(person.role)
+        and ('<span class="member-role">' .. escape(person.role) .. "</span>")
+        or ""
       out[#out + 1] = table.concat({
         '<li class="member">',
-        '<span class="member-name">', escape(name), "</span>",
+        '<span class="member-name">', escape(name), role, "</span>",
         '<span class="member-university">', escape(person.university), "</span>",
         #links > 0 and ('<span class="member-links">' .. table.concat(links, "") .. "</span>") or "",
         "</li>",
@@ -226,32 +271,4 @@ return {
     return pandoc.RawBlock("html", table.concat(out, "\n"))
   end,
 
-  -- One numbered list per project. Names repeat across projects on purpose:
-  -- people contribute to more than one.
-  ["lab-collaborators"] = function(args, kwargs, meta)
-    local people = meta.people
-    local groups = collect(people and people["collaborator-groups"] or nil)
-    if #groups == 0 then return pandoc.Null() end
-    local out = { '<div class="collab-groups">' }
-    for _, row in ipairs(groups) do
-      local group = row.entry
-      local members = collect(group.people)
-      if #members > 0 then
-        out[#out + 1] = '<section class="collab-group">'
-        out[#out + 1] = '<h4 class="collab-project">' .. escape(group.project) .. "</h4>"
-        out[#out + 1] = '<ol class="collab-list">'
-        for _, member in ipairs(members) do
-          local person = member.entry
-          local line = escape(person.name)
-          if present(person.university) then
-            line = line .. ", " .. escape(person.university)
-          end
-          out[#out + 1] = "<li>" .. line .. "</li>"
-        end
-        out[#out + 1] = "</ol></section>"
-      end
-    end
-    out[#out + 1] = "</div>"
-    return pandoc.RawBlock("html", table.concat(out, "\n"))
-  end,
 }

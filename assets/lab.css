@@ -268,17 +268,23 @@ p {
   color: var(--ink);
 }
 
-/* ---------- the links disclosure ---------- */
+/* ---------- disclosures ---------- */
 
 /* <details> gives expand and collapse, keyboard operation and a correct
-   accessibility role with no JavaScript. */
-.project-links {
+   accessibility role with no JavaScript. Links, collaborators and the two
+   panel cards all use this one component. */
+.card-disclosures {
   margin-top: auto;
-  border-top: 1px solid var(--rule);
-  padding-top: 0.65rem;
+  display: grid;
+  gap: 0.5rem;
 }
 
-.project-links > summary {
+.disclosure {
+  border-top: 1px solid var(--rule);
+  padding-top: 0.6rem;
+}
+
+.disclosure > summary {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -289,12 +295,13 @@ p {
   font-weight: 600;
 }
 
-.project-links > summary::-webkit-details-marker {
+.disclosure > summary::-webkit-details-marker {
   display: none;
 }
 
-.project-links > summary::before {
+.disclosure > summary::before {
   content: "";
+  flex: 0 0 auto;
   width: 0.4rem;
   height: 0.4rem;
   border-right: 1.5px solid currentColor;
@@ -303,29 +310,32 @@ p {
   transition: transform 0.15s ease;
 }
 
-.project-links[open] > summary::before {
+.disclosure[open] > summary::before {
   transform: rotate(45deg);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-links > summary::before {
+  .disclosure > summary::before {
     transition: none;
   }
 }
 
-.project-links > summary:hover,
-.project-links > summary:focus-visible {
+.disclosure > summary:hover,
+.disclosure > summary:focus-visible {
   color: var(--link-hover);
 }
 
-.link-count {
+.disclosure-count {
   color: var(--ink-muted);
   font-weight: 400;
   font-variant-numeric: tabular-nums;
 }
 
+.disclosure-body {
+  margin-top: 0.7rem;
+}
+
 .link-groups {
-  margin-top: 0.75rem;
   display: grid;
   gap: 0.8rem;
 }
@@ -361,13 +371,30 @@ p {
   border-bottom-color: currentColor;
 }
 
+/* A plain numbered list: name and affiliation on one line, easy to count. */
+.collab-list {
+  margin: 0;
+  padding-left: 1.4rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+.collab-list li {
+  margin-bottom: 0.2rem;
+}
+
+.collab-list li::marker {
+  color: var(--rule-strong);
+}
+
 /* ---------- planned work and related initiatives ---------- */
 
-/* One card holds the whole section. Planned work is not a set of running
-   projects, and the related initiatives are not ours, so neither gets the
-   per-project card treatment or a logo. */
+/* One small card per section, the same size as a project card and opening on
+   click. Neither carries a logo, so neither reads as a running Lab project. */
 .panel-card {
-  padding: 1.25rem 1.4rem 1.35rem;
+  max-width: 32rem;
+  padding: 0.9rem 1.2rem 1rem;
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: 0.4rem;
@@ -377,24 +404,17 @@ p {
   background: var(--surface-sunk);
 }
 
+/* The card is the disclosure, so it needs no rule above the summary. */
+.panel-card .disclosure {
+  border-top: 0;
+  padding-top: 0;
+}
+
 .panel-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
-  gap: 1.1rem 2rem;
+  gap: 0.9rem;
   margin: 0;
-  padding: 0 0 0 1.2rem;
-}
-
-/* Two columns rather than three, so four planned items fill both rows
-   instead of leaving an orphan. */
-@media (min-width: 58rem) {
-  .panel-card--planning .panel-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.panel-item {
-  padding-left: 0.2rem;
+  padding-left: 1.3rem;
 }
 
 .panel-item::marker {
@@ -446,6 +466,22 @@ p {
   font-weight: 600;
 }
 
+/* The one role we show. Quiet, and clearly secondary to the name. */
+.member-role {
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.4rem;
+  background: var(--surface-sunk);
+  border: 1px solid var(--rule);
+  border-radius: 0.6rem;
+  color: var(--ink-muted);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: 0.1em;
+  white-space: nowrap;
+}
+
 .member-university {
   display: block;
   color: var(--ink-muted);
@@ -478,40 +514,6 @@ p {
   .member-list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-}
-
-/* Collaborators sit in a plain numbered list per project. People who work on
-   more than one project appear more than once, by design. */
-.collab-groups {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  align-items: start;
-  gap: 1.5rem 2rem;
-  margin-top: 0.5rem;
-}
-
-.collab-project {
-  margin: 0 0 0.4rem;
-  color: var(--ink-heading);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.collab-list {
-  margin: 0;
-  padding-left: 1.5rem;
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.collab-list li {
-  margin-bottom: 0.25rem;
-}
-
-.collab-list li::marker {
-  color: var(--ink-muted);
 }
 
 /* ---------- footer ---------- */
@@ -574,9 +576,12 @@ p {
     font-size: 1.1875rem;
   }
 
-  .project-card,
-  .panel-card {
+  .project-card {
     padding: 1.05rem 1.1rem;
+  }
+
+  .panel-card {
+    padding: 0.85rem 1rem 0.95rem;
   }
 
   .panel-list {
@@ -597,11 +602,11 @@ p {
   }
 
   /* Print everything, including anything the reader left collapsed. */
-  .project-links > summary {
+  .disclosure > summary {
     display: none;
   }
 
-  .link-groups {
+  .disclosure-body {
     display: block;
   }
 }

@@ -6,26 +6,26 @@
 # Sorted by `order`, lowest first.
 
 related:
-  - name: "GRADE Working Group"
-    order: 1
-    url: "https://www.gradeworkinggroup.org"
-    description: >-
-      Sets the GRADE approach for rating how certain the evidence is. Some of
-      us help write its guidance.
-
   - name: "EQUATOR Network"
-    order: 2
+    order: 1
     url: "https://www.equator-network.org"
     description: >-
       Keeps the library of reporting guidelines for health research. We use it,
       and we study it.
 
   - name: "COMET Initiative"
-    order: 3
+    order: 2
     url: "https://www.comet-initiative.org"
     description: >-
       Collects core outcome sets for trials and reviews. We do not run it, but
       we point people to it.
+
+  - name: "LATITUDES Network"
+    order: 3
+    url: "https://www.latitudes-network.org"
+    description: >-
+      A library of tools and training for assessing validity in evidence
+      synthesis. We do not run it, but it sits close to our own work.
 
   # TODO: CORE-SR. We could not identify this initiative from the workspace or
   # from public sources, so nothing is published for it. Add the full name and

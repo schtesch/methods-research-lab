@@ -60,6 +60,8 @@ projects:
         items:
           - text: "Protocol, J Clin Epidemiol 2026"
             url: "https://doi.org/10.1016/j.jclinepi.2026.112184"
+          - text: "Proposed and applied strategies, J Clin Epidemiol 2026"
+            url: "https://doi.org/10.1016/j.jclinepi.2026.112483"
       - group: "Funding"
         order: 3
         items:
@@ -92,6 +94,8 @@ projects:
         items:
           - text: "JAMA Netw Open 2023"
             url: "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2801408"
+          - text: "Survey of 105 guidance articles, J Clin Epidemiol 2022"
+            url: "https://doi.org/10.1016/j.jclinepi.2022.05.005"
 
   - id: iceman
     name: "ICEMAN"
@@ -131,6 +135,8 @@ projects:
             url: "https://doi.org/10.1016/j.jclinepi.2023.03.003"
           - text: "Core GRADE 3, BMJ 2025"
             url: "https://doi.org/10.1136/bmj-2024-081905"
+          - text: "IQWiG General Methods 7.0 (PDF)"
+            url: "https://www.iqwig.de/methoden/general-methods_version-7-0.pdf"
       - group: "Download"
         order: 4
         items:
